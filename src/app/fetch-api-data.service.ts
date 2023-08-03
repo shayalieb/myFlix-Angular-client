@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs'
 import { map } from 'rxjs/operators';
 
-//Declare the API url that will provide data to the client site
+//Declare the API url that will provide data to the 
 const apiUrl = 'https://shyflixapp.herokuapp.com/'
 @Injectable({ providedIn: 'root' })//This will be avail everywhere
 

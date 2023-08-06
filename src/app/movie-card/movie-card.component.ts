@@ -35,7 +35,7 @@ export class MovieCardComponent {
     })
   }
 
-  getDirector(name: string, bio: string): void {
+  getOneDirector(name: string, bio: string): void {
     this.dialog.open(MovieInfoComponentComponent, {
       data: {title: name, content: bio, }
     })

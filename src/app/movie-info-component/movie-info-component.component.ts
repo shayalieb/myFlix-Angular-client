@@ -13,5 +13,5 @@ export class MovieInfoComponentComponent {
     public data: { title: string, content: string}
   ) { }
 
-  ngOnInt(): void { }
+  ngOnInit(): void { }
 }

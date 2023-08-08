@@ -1,10 +1,10 @@
 <mat-toolbar>
-    <a mat-button (click)="toMovies()" target="_blank">myFlix</a>
+    <a mat-button (click)="toMovies()" target="_blank" class="top-bar-logo">myFlix</a>
     <span class="example-spacer"></span>
-    <button mat-icon-button (click)="toProfile()" class="person-icon" aria-label="Person icon-button">
-        <mat-icon>person</mat-icon>
+    <button mat-button (click)="toProfile()" class="profile-icon" aria-label="Person icon-button">
+        Profile
     </button> 
-    <button mat-icon-button (click)="logOut()" class="logout-icon" aria-label="Logout icon-button">
-        <mat-icon>logout</mat-icon>
+    <button mat-button (click)="logOut()" class="profile-icon" aria-label="Logout icon-button">
+        Logout
     </button>
 </mat-toolbar>

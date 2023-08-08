@@ -1,12 +1,14 @@
+<app-top-bar></app-top-bar>
+
 <!-- *ngFor is used for displaying all the returned movies where each one is in its own card -->
 <div style="display: flex;">
     <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;">
         <!-- <mat=card-header> -->
-            <mat-card-title>{{movie.Title}}</mat-card-title>
-            <mat-card-subtitle>Director: {{movie.Director.Name}}</mat-card-subtitle>
+            <mat-card-title class="card-title">{{movie.Title}}</mat-card-title>
+            <mat-card-subtitle class="card-director">Director: {{movie.Director.Name}}</mat-card-subtitle>
         <!-- </mat-card-header> -->
         <img class="card-image" src={{movie.imagepath}} alt= {{movie.Title}} />
-        <mat-card-actions>
+        <mat-card-actions class="button-actions">
             <button
                 mat-button
                 color="primary"
@@ -21,7 +23,8 @@
         >
         Synopsis
     </button>   
-        <mat-icon
+    <br>
+        <mat-icon class="fav-icon"
             (click)="addFavorite(movie._id)"
         >favorite_icon</mat-icon>
         </mat-card-actions>

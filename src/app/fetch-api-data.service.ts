@@ -115,6 +115,11 @@ export class FetchApiDataService {
     }).pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
+  isFavoriteMovie(movieId: string): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user.FavoriteMovies.indexOf(movieId) >= 0
+  }
+
   //API call for edit user profile
   editUser(updatedUser: any): Observable<any> {
     const username = localStorage.getItem('username');

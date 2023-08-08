@@ -55,11 +55,16 @@ export class MovieCardComponent {
     })
   }
 
-  isFavorite(id: string): void {
+  isFavorite(id: string): boolean {
+    return this.fetchApiData.isFavoriteMovie(id)
+  };
+
+  removeFavorite(id: string): void {
     this.fetchApiData.deleteFavoriteMovie(id).subscribe((Response: any) => {
-      this.snackBar.open('The movie was removed from favorites', 'OK', {
+      this.snackBar.open('Removed from favorite movies', 'OK', {
         duration: 2000
       })
     })
   }
+
 }

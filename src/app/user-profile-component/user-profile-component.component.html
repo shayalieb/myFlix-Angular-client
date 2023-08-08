@@ -1,10 +1,11 @@
+<app-top-bar></app-top-bar>
 <!-- <app-navigation></app-navigation> -->
 <div class="profile-container">
     <div class="info-container">
         <div class="info">
             <h1>My Profile</h1>
-            <h4>Username {{user.Username}}</h4>
-            <h4>Email: {{user.Email}}</h4>
+            <h4>Username {{userData.Username}}</h4>
+            <h4>Email {{userData.Email}}</h4>
             <h2>My Favorite Movies</h2>
             <div *ngIf="favoriteMovies.length === 0">
                 <h5>Favorite lost is empty</h5>
@@ -18,8 +19,8 @@
         </mat-list>
     </div>
 
-    <form>
-        <h1>Update your Profile</h1>
+    <form class="update-profile-container">
+        <h1 class="update-header">Update your Profile</h1>
         <br>
         <mat-form-field class="update-username">
             <mat-label>Username</mat-label>
@@ -31,7 +32,7 @@
                     placeholder="Update your username"
             >
             </mat-form-field>
-
+            <br>
             <mat-form-field class="update-password">
                 <mat-label>Password</mat-label>
                 <input
@@ -42,7 +43,7 @@
                     placeholder="Update your password" 
                 >
             </mat-form-field>
-
+            <br>
             <mat-form-field class="update-email">
                 <mat-label>Email</mat-label>
                 <input
@@ -53,7 +54,7 @@
                     placeholder="Update your email"
                 >
             </mat-form-field>
-
+            <br>
             <mat-form-field class="update-birthday">
                 <mat-label>Birthday</mat-label>
                 <input

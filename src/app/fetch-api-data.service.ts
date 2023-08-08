@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs'
-import { map } from 'rxjs/operators';
 
 //Declare the API url that will provide data to the 
 const apiUrl = 'https://shyflixapp.herokuapp.com/'
@@ -131,9 +130,9 @@ export class FetchApiDataService {
 
   //API call for deleting a user
   deleteUser(): Observable<any> {
-    const userid = localStorage.getItem('userid');
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/' + userid, {
+    const username = localStorage.getItem('Username');
+    return this.http.delete(apiUrl + 'users/' + username, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token

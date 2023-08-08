@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs'
 
 //Declare the API url that will provide data to the 
 const apiUrl = 'https://shyflixapp.herokuapp.com/'
+// const apiUrl = 'http://localhost:8080/'
 @Injectable({ providedIn: 'root' })//This will be avail everywhere
 
 //The class component that will handle the API and Error calls

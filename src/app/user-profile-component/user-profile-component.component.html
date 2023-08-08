@@ -1,1 +1,86 @@
-<p>user-profile-component works!</p>
+<!-- <app-navigation></app-navigation> -->
+<div class="profile-container">
+    <div class="info-container">
+        <div class="info">
+            <h1>My Profile</h1>
+            <h4>Username {{user.Username}}</h4>
+            <h4>Email: {{user.Email}}</h4>
+            <h2>My Favorite Movies</h2>
+            <div *ngIf="favoriteMovies.length === 0">
+                <h5>Favorite lost is empty</h5>
+            </div>
+        </div>
+        <mat-list>
+            <mat-list-item *ngFor="let movie of favoriteMovies">
+                <img matListItemAvatar src="{{movie.imagepath}}" />
+                <span matListItemTitle>{{movie.Title}}</span>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <form>
+        <h1>Update your Profile</h1>
+        <br>
+        <mat-form-field class="update-username">
+            <mat-label>Username</mat-label>
+                <input 
+                    matInput 
+                    [(ngModel)]="userData.Username" 
+                    type="text" 
+                    name="Username"
+                    placeholder="Update your username"
+            >
+            </mat-form-field>
+
+            <mat-form-field class="update-password">
+                <mat-label>Password</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="userData.Password" 
+                    type="password"
+                    name="Password"
+                    placeholder="Update your password" 
+                >
+            </mat-form-field>
+
+            <mat-form-field class="update-email">
+                <mat-label>Email</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="userData.Email"
+                    type="email"
+                    name="Email"
+                    placeholder="Update your email"
+                >
+            </mat-form-field>
+
+            <mat-form-field class="update-birthday">
+                <mat-label>Birthday</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="userData.Birthday"
+                    type="date"
+                    name="Birthday"
+                    placeholder="Update your Birthday mm/dd/yyyy"
+                >
+            </mat-form-field>
+            <br>
+
+            <button 
+                class="update-button"
+                mat-raised-button 
+                color="primary"
+                (click)="editUser()"
+            >
+            Update Profile
+            </button>    
+            <button
+                class="delete-button"
+                mat-raised-button
+                color="warn"
+                (click)="deleteUser()"
+            >
+            Delete Account
+            </button>
+    </form>
+</div>

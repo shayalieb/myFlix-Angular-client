@@ -17,7 +17,7 @@ export class MovieCardComponent {
     public dialog: MatDialog
     ) { }
 
-  ngOnIni(): void {
+  ngOnInit(): void {
     this.getMovies();
   }
 

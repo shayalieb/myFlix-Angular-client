@@ -9,14 +9,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatListModule} from '@angular/material/list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';;
-
-import { AppComponent } from './app.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';;
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { RouterModule, Route  } from '@angular/router';
+
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
@@ -25,6 +26,8 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { UserProfileComponentComponent } from './user-profile-component/user-profile-component.component';
 import { NavigationComponentComponent } from './navigation-component/navigation-component.component';
 import { MovieInfoComponentComponent } from './movie-info-component/movie-info-component.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
+
 
 
 @NgModule({
@@ -37,6 +40,7 @@ import { MovieInfoComponentComponent } from './movie-info-component/movie-info-c
     UserProfileComponentComponent,
     NavigationComponentComponent,
     MovieInfoComponentComponent,
+    TopBarComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -57,6 +61,7 @@ import { MovieInfoComponentComponent } from './movie-info-component/movie-info-c
     MatTooltipModule,
     MatListModule,
     MatProgressSpinnerModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

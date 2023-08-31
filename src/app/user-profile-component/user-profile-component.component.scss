@@ -1,17 +1,14 @@
-.profile-container {
-    text-align: center;
-}
-
-.info {
-    display: inline;
-    justify-content: center;
-}
-
-.update-profile-container {
-    text-align: center;
-}
-
-.update-button {
-    margin: 25px;
-}
-
+.profile {
+    padding: 26px;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  
+  .profile-form {
+    mat-form-field {
+      width: 100%;
+    }
+  }

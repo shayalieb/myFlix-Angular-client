@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
+// type User = { _id?: string, Username?: string, Password?: string, Email?: string, FavoriteMOvies?: [] }
+
 @Component({
   selector: 'app-user-profile-component',
   templateUrl: './user-profile-component.component.html',
@@ -33,7 +35,7 @@ export class UserProfileComponentComponent implements OnInit {
       this.userData.Email = this.user.Email;
       this.user.Birthday = formatDate(this.user.Birthday, 'mm-dd-yyyy', 'en-US', 'UTC+4');
 
-      this.fetchApiData.getMovies().subscribe((resp: any) => {
+      this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         this.favoriteMovies = resp.filter((m: { _id: any}) => this.user.FavoriteMovies.indexOf(m._id) >= 0)
       })
     })

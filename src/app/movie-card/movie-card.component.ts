@@ -22,7 +22,7 @@ export class MovieCardComponent {
   }
 
   getMovies(): void {
-    this.fetchApiData.getMovies().subscribe((resp: any) => {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
       console.log(this.movies);
       return this.movies;

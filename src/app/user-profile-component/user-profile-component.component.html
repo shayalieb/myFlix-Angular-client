@@ -1,9 +1,13 @@
+<app-top-bar></app-top-bar>
 <div class="profile">
     <h1>Your Profile</h1>
     <div class="grid">
       <div>
         <p>Username: {{ user.Username }}</p>
         <p>Email: {{ user.Email }}</p>
+      </div>
+      <div class="fav-movie">
+        Favorite Movies {{ userData}}
       </div>
       <mat-card>
         <mat-card-content>
@@ -15,7 +19,7 @@
                 placeholder="Username"
                 type="text"
                 name="Username"
-                required
+
               >
               </mat-form-field>
               <mat-form-field>
@@ -25,7 +29,6 @@
                 type = "password"
                 placeholder="Password"
                 name="Password"
-                required
               >
             </mat-form-field>
             <mat-form-field>
@@ -35,7 +38,15 @@
                 type = "email"
                 placeholder="Email"
                 name="Email"
-                required
+              >
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                [(ngModel)]="userData.Birthday"
+                type = "date"
+                placeholder="Birthday"
+                name="Birthday"
               >
             </mat-form-field>
             <mat-card-actions>
@@ -46,6 +57,13 @@
               >
                 Update User
               </button>
+              <button
+                mat-raised-button
+                (click)="deleteUser()"
+                color="warning"  
+              >
+              Delete Account
+            </button>
             </mat-card-actions>
           </form>
         </mat-card-content>

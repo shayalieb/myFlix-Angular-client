@@ -14,3 +14,26 @@
       text-align: center;
     }
   }
+
+  .card-image {
+    width: 280px;
+    height: 380px;
+}
+
+.card-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: large;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.fav-movie {
+  display: block;
+  width: 25%;
+  margin-left: 50px;
+}
+
+.delete-button {
+  margin-left: 15px;
+}

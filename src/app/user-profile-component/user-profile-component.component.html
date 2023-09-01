@@ -6,9 +6,6 @@
         <p>Username: {{ user.Username }}</p>
         <p>Email: {{ user.Email }}</p>
       </div>
-      <div class="fav-movie">
-        Favorite Movies {{ userData}}
-      </div>
       <mat-card>
         <mat-card-content>
           <form class="profile-form">
@@ -66,6 +63,16 @@
             </button>
             </mat-card-actions>
           </form>
+          <div class="fav-movie">
+            Favorite Movies
+            <mat-card *ngFor="let movie of favoriteMovies;">
+              <mat-card-title class="card-title">{{movie.Title}}</mat-card-title>
+              <img class="card-image" src={{movie.imagepath}} alt= {{movie.Title}} />
+              <!-- <mat-icon class="fav-icon"
+            (click)="removeFavorite(movie._id)"
+        >favorite_icon</mat-icon> -->
+            </mat-card>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>

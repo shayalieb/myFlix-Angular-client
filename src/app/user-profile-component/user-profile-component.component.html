@@ -55,6 +55,7 @@
                 Update User
               </button>
               <button
+                class="delete-button"
                 mat-raised-button
                 (click)="deleteUser()"
                 color="warning"  
@@ -68,7 +69,9 @@
             <mat-card *ngFor="let movie of favoriteMovies;">
               <mat-card-title class="card-title">{{movie.Title}}</mat-card-title>
               <img class="card-image" src={{movie.imagepath}} alt= {{movie.Title}} />
-              <button mat-raised-button (click)="deleteFavoriteMovie(movie._id)">Delete from favorites</button>
+              <!-- <mat-icon class="fav-icon"
+            (click)="deleteFavoriteMovie(movie._id)"
+        >favorite_icon</mat-icon> -->
             </mat-card>
           </div>
         </mat-card-content>

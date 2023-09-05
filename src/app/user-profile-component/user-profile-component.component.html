@@ -68,9 +68,7 @@
             <mat-card *ngFor="let movie of favoriteMovies;">
               <mat-card-title class="card-title">{{movie.Title}}</mat-card-title>
               <img class="card-image" src={{movie.imagepath}} alt= {{movie.Title}} />
-              <!-- <mat-icon class="fav-icon"
-            (click)="removeFavorite(movie._id)"
-        >favorite_icon</mat-icon> -->
+              <button mat-raised-button (click)="deleteFavoriteMovie(movie._id)">Delete from favorites</button>
             </mat-card>
           </div>
         </mat-card-content>

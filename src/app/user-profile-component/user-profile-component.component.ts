@@ -40,19 +40,36 @@ export class UserProfileComponentComponent implements OnInit {
   }
 
   editUser(): void {
+    // Assuming you have implemented an appropriate API endpoint and service method for editing the user's profile
     this.fetchApiData.editUser(this.userData).subscribe((data) => {
       localStorage.setItem('user', JSON.stringify(data));
       localStorage.setItem('Username', data.Username);
       this.snackBar.open('Your profile has been updated!', 'OK', {
         duration: 2000
-      })
-      window.location.reload();
-    }, (result) => {
-      this.snackBar.open(result, 'OK', {
+      });
+      // Optionally, you can refresh the user data here
+      this.getUser();
+    }, (error) => {
+      this.snackBar.open('Error updating profile: ' + error, 'OK', {
         duration: 2000
-      })
-    })
+      });
+    });
   }
+
+  // editUser(): void {
+  //   this.fetchApiData.editUser(this.userData).subscribe((data) => {
+  //     localStorage.setItem('user', JSON.stringify(data));
+  //     localStorage.setItem('Username', data.Username);
+  //     this.snackBar.open('Your profile has been updated!', 'OK', {
+  //       duration: 2000
+  //     })
+  //     window.location.reload();
+  //   }, (result) => {
+  //     this.snackBar.open(result, 'OK', {
+  //       duration: 2000
+  //     })
+  //   })
+  // }
 
   deleteUser(): void {
     if(confirm('Are you sure?')) {
@@ -69,8 +86,21 @@ export class UserProfileComponentComponent implements OnInit {
       });
     }
   }
+
+  deleteFavoriteMovie(movieId: string): void {
+    if (confirm('Are you sure you want to remove this movie from your favorites?')) {
+      this.fetchApiData.deleteFavoriteMovie(movieId).subscribe(() => {
+        this.snackBar.open('Movie removed from favorites!', 'OK', {
+          duration: 2000
+        });
+        // Refresh the list of favorite movies after removal
+        this.favoriteMovies = this.favoriteMovies.filter(movie => movie._id !== movieId);
+      }, (error) => {
+        this.snackBar.open('Error removing movie from favorites: ' + error, 'OK', {
+          duration: 2000
+        });
+      });
+    }
+  }
 }
-
-
-
 

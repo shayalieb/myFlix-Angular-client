@@ -56,21 +56,7 @@ export class UserProfileComponentComponent implements OnInit {
     });
   }
 
-  // editUser(): void {
-  //   this.fetchApiData.editUser(this.userData).subscribe((data) => {
-  //     localStorage.setItem('user', JSON.stringify(data));
-  //     localStorage.setItem('Username', data.Username);
-  //     this.snackBar.open('Your profile has been updated!', 'OK', {
-  //       duration: 2000
-  //     })
-  //     window.location.reload();
-  //   }, (result) => {
-  //     this.snackBar.open(result, 'OK', {
-  //       duration: 2000
-  //     })
-  //   })
-  // }
-
+  //Delete a user's account method
   deleteUser(): void {
     if(confirm('Are you sure?')) {
       this.router.navigate(['welcome']).then(() => {
@@ -87,6 +73,7 @@ export class UserProfileComponentComponent implements OnInit {
     }
   }
 
+  //Delete a movie from favoriteMovies array method
   deleteFavoriteMovie(movieId: string): void {
     if (confirm('Are you sure you want to remove this movie from your favorites?')) {
       this.fetchApiData.deleteFavoriteMovie(movieId).subscribe(() => {

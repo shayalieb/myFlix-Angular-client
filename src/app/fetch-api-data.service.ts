@@ -79,6 +79,17 @@ export class FetchApiDataService {
   }
 
   //APi call to get user 
+  // getOneUser(): Observable<any> {
+  //   const username = localStorage.getItem('Username');
+  //   const token = localStorage.getItem('token');
+  //   return this.http.get(apiUrl + 'users/' + username, {
+  //     headers: new HttpHeaders(
+  //       {
+  //         Authorization: 'Bearer ' + token
+  //       }
+  //     )
+  //   }).pipe(map(this.extractResponseData), catchError(this.handleError));
+  // }
   getOneUser(): Observable<any> {
     const username = localStorage.getItem('Username');
     const token = localStorage.getItem('token');
@@ -88,12 +99,17 @@ export class FetchApiDataService {
           Authorization: 'Bearer ' + token
         }
       )
-    }).pipe(map(this.extractResponseData), catchError(this.handleError));
+    }).pipe(map(this.extractResponseData), map((data) => {
+      return {
+        ...data,
+        FavoriteMovies: data.FavoriteMovies
+      };
+    }), catchError(this.handleError));
   }
 
   //API call to get favorite movies
   getFavoriteMovies(): Observable<any> {
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('Username');
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users/' + username, {
       headers: new HttpHeaders(
@@ -103,16 +119,25 @@ export class FetchApiDataService {
       )
     }).pipe(map(this.extractResponseData), map((data) => data.FavoriteMovies), catchError(this.handleError));
   }
+  
+  // getFavoriteMovies(): Observable<any> {
+  //   const username = localStorage.getItem('Username');
+  //   const token = localStorage.getItem('token');
+  //   return this.http.get(apiUrl + 'users/' + username, {
+  //     headers: new HttpHeaders(
+  //       {
+  //         Authorization: 'Bearer ' + token
+  //       }
+  //     )
+  //   }).pipe(map(this.extractResponseData), map((data) => data.FavoriteMovies), catchError(this.handleError));
+  // }
 
   //API call for adding favorite movies
   addFavoriteMovie(movieId: string): Observable<any> {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const user = localStorage.getItem('Username') || '{}';
     const token = localStorage.getItem('token');
-
-    user.FavoriteMovies.push(movieId);
-    localStorage.setItem('user', JSON.stringify(user));
-
-    return this.http.post(apiUrl + `users/${user.Username}/movies/${movieId}`, '{}', {
+  
+    return this.http.post(apiUrl + `users/${user}/movies/${movieId}`, '{}', {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
@@ -122,14 +147,19 @@ export class FetchApiDataService {
     }).pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  isFavoriteMovie(movieId: string): boolean {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return user.FavoriteMovies.includes(movieId) >= 0
+  // isFavoriteMovie(movieId: string): boolean {
+  //   const user = JSON.parse(localStorage.getItem('user') || '{}');
+  //   return user.FavoriteMovies.includes(movieId) >= 0
+  // }
+  isFavoriteMovie(movieId: string): Observable<boolean> {
+    return this.getFavoriteMovies().pipe(
+      map(favoriteMovies => favoriteMovies.includes(movieId))
+    );
   }
 
   //API call for edit user profile
   editUser(updatedUser: any): Observable<any> {
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('Username');
     const token = localStorage.getItem('token');
     return this.http.put(apiUrl + 'users/' + username, updatedUser, {
       headers: new HttpHeaders(
@@ -155,7 +185,7 @@ export class FetchApiDataService {
 
   //API call for deleting a favorite movie
   deleteFavoriteMovie(movieId: string): Observable<any> {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const user = JSON.parse(localStorage.getItem('users') || '{}');
     const token = localStorage.getItem('token');
     const index = user.FavoriteMovies.indexOf(movieId);
     if(index >= 0) {

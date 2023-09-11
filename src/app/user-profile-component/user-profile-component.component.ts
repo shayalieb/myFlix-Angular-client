@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile-component',
@@ -24,35 +25,58 @@ export class UserProfileComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    //this.getFavoriteMovies();
   }
 
   getUser(): void {
-    this.fetchApiData.getOneUser().subscribe((resp: any) => {
-      this.user = resp;
+    forkJoin({
+      user: this.fetchApiData.getOneUser(),
+      movies: this.fetchApiData.getAllMovies()
+    }).subscribe(({ user, movies }) => {
+      console.log(user, 'Her is the user')
+      this.user = user;
       this.userData.Username = this.user.Username;
       this.userData.Email = this.user.Email;
       this.userData.Birthday = formatDate(this.user.Birthday, 'mm-dd-yyyy', 'en-US', 'UTC+4');
-
-      this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-        this.favoriteMovies = resp.filter((m: { _id: any}) => this.user.FavoriteMovies.indexOf(m._id) >= 0)
-      })
-    })
+      this.favoriteMovies = movies.filter((m: { _id: any }) => this.user.FavoriteMovies.indexOf(m._id) >= 0);
+    });
   }
+  // getUser(): void {
+  //   this.fetchApiData.getOneUser().subscribe((resp: any) => {
+  //     this.user = resp;
+  //     this.userData.Username = this.user.Username;
+  //     this.userData.Email = this.user.Email;
+  //     this.userData.Birthday = formatDate(this.user.Birthday, 'mm-dd-yyyy', 'en-US', 'UTC+4');
+
+  //     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+  //       this.favoriteMovies = resp.filter((m: { _id: any}) => this.user.FavoriteMovies.indexOf(m._id) >= 0)
+  //     })
+  //   })
+  // }
+
+  // getFavoriteMovies(): void {
+  //   this.fetchApiData.getFavoriteMovies().subscribe((response: any) => {
+  //     this.favoriteMovies = response;
+  //   });
+  // }
 
   editUser(): void {
-    // Assuming you have implemented an appropriate API endpoint and service method for editing the user's profile
-    this.fetchApiData.editUser(this.userData).subscribe((data) => {
-      localStorage.setItem('user', JSON.stringify(data));
-      localStorage.setItem('Username', data.Username);
-      this.snackBar.open('Your profile has been updated!', 'OK', {
-        duration: 2000
-      });
-      // Optionally, you can refresh the user data here
-      this.getUser();
-    }, (error) => {
-      this.snackBar.open('Error updating profile: ' + error, 'OK', {
-        duration: 2000
-      });
+    this.fetchApiData.editUser(this.userData).subscribe({
+      next: (data) => {
+        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('Username', data.Username);
+      },
+      error: (error) => {
+        this.snackBar.open('Error updating profile: ' + error, 'OK', {
+          duration: 2000
+        });
+      },
+      complete: () => {
+        this.snackBar.open('Your profile has been updated!', 'OK', {
+          duration: 2000
+        });
+        this.getUser();
+      }
     });
   }
 

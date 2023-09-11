@@ -46,7 +46,7 @@
                 name="Birthday"
               >
             </mat-form-field>
-            <mat-card-actions>
+            <mat-card-actions class="btn-class">
               <button
                 mat-raised-button
                 (click)="editUser()"
@@ -68,10 +68,10 @@
             Favorite Movies
             <mat-card *ngFor="let movie of favoriteMovies;">
               <mat-card-title class="card-title">{{movie.Title}}</mat-card-title>
-              <img class="card-image" src={{movie.imagepath}} alt= {{movie.Title}} />
-              <!-- <mat-icon class="fav-icon"
+              <img class="card-image" src="{{movie.imagepath}}" alt="{{movie.Title}}" />
+              <mat-icon class="fav-icon"
             (click)="deleteFavoriteMovie(movie._id)"
-        >favorite_icon</mat-icon> -->
+        >delete-button</mat-icon>
             </mat-card>
           </div>
         </mat-card-content>

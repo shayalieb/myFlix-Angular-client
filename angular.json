@@ -95,7 +95,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/myFlix-Angular-client/",
+            "baseHref": "/",
             "dir": "dist/myFlix-Angular-client"
           }
           

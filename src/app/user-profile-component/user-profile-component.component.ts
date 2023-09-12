@@ -27,7 +27,9 @@ export class UserProfileComponentComponent implements OnInit {
     this.getUser();
     //this.getFavoriteMovies();
   }
-
+  /**
+   * Get the users info along with the users favorite movies
+   */
   getUser(): void {
     forkJoin({
       user: this.fetchApiData.getOneUser(),
@@ -41,25 +43,10 @@ export class UserProfileComponentComponent implements OnInit {
       this.favoriteMovies = movies.filter((m: { _id: any }) => this.user.FavoriteMovies.indexOf(m._id) >= 0);
     });
   }
-  // getUser(): void {
-  //   this.fetchApiData.getOneUser().subscribe((resp: any) => {
-  //     this.user = resp;
-  //     this.userData.Username = this.user.Username;
-  //     this.userData.Email = this.user.Email;
-  //     this.userData.Birthday = formatDate(this.user.Birthday, 'mm-dd-yyyy', 'en-US', 'UTC+4');
 
-  //     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-  //       this.favoriteMovies = resp.filter((m: { _id: any}) => this.user.FavoriteMovies.indexOf(m._id) >= 0)
-  //     })
-  //   })
-  // }
-
-  // getFavoriteMovies(): void {
-  //   this.fetchApiData.getFavoriteMovies().subscribe((response: any) => {
-  //     this.favoriteMovies = response;
-  //   });
-  // }
-
+  /**
+   * Edit the users account info and send it to the server
+   */
   editUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe({
       next: (data) => {
@@ -80,7 +67,9 @@ export class UserProfileComponentComponent implements OnInit {
     });
   }
 
-  //Delete a user's account method
+  /**
+   * Delete a user's account method
+   */
   deleteUser(): void {
     if(confirm('Are you sure?')) {
       this.router.navigate(['welcome']).then(() => {
@@ -97,7 +86,10 @@ export class UserProfileComponentComponent implements OnInit {
     }
   }
 
-  //Delete a movie from favoriteMovies array method
+  /**
+   * Delete a movie from favoriteMovies array method
+   * @param movieId 
+   */
   deleteFavoriteMovie(movieId: string): void {
     if (confirm('Are you sure you want to remove this movie from your favorites?')) {
       this.fetchApiData.deleteFavoriteMovie(movieId).subscribe(() => {

@@ -15,14 +15,17 @@ export class TopBarComponent {
 
   }
 
+  //Navigate the all movies
   toMovies(): void {
     this.router.navigate(['movies']);
   }
 
+  //Navigate to user profile
   toProfile(): void {
     this.router.navigate(['profile']);
   }
 
+  //Log out and clear the local storage
   logOut(): void {
     this.router.navigate(['welcome']);
     localStorage.clear();

@@ -27,6 +27,10 @@ export class UserLoginFormComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    /**
+     * Takes the users login credentials and sends it to the server for validation, 
+     * then logs in the user, and saves the user info in the local storage
+     */
     loginUser(): void {
         this.fetchApiData.userLogin(this.userData).subscribe((data) => {
             localStorage.setItem('users', JSON.stringify(data.user))

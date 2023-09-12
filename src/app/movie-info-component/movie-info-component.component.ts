@@ -6,6 +6,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './movie-info-component.component.html',
   styleUrls: ['./movie-info-component.component.scss']
 })
+
+/**
+ * MovieInfoComponentComponent is responsible for retrieving the movie dialog info
+ */
 export class MovieInfoComponentComponent {
   //@inject will add the data form the movie object the movie info dialog
   constructor(

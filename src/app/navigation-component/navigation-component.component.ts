@@ -6,6 +6,11 @@ import { Router } from '@angular/router';
   templateUrl: './navigation-component.component.html',
   styleUrls: ['./navigation-component.component.scss']
 })
+
+/**
+ * This class NavigationComponentComponent is responsible for 
+ * routing to the movies, profile, and welcome screens
+ */
 export class NavigationComponentComponent {
   constructor(private router: Router) { }
 

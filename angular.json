@@ -43,15 +43,14 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "baseHref": "/myFlix-Angular-client/"
             }
           },
           "defaultConfiguration": "production"
@@ -98,7 +97,6 @@
             "baseHref": "/myFlix-Angular-client/",
             "dir": "dist/myFlix-Angular-client"
           }
-          
         }
       }
     }
